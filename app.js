@@ -2,6 +2,18 @@ angular.module('myApp', ['ngRoute'])
 	.controller('myAppController', myAppController)
 	.directive('directiveNew', directiveNew)
 	.config(routingStuff);
+	// .factory('Factory', Factory);
+
+
+
+// Factory.$inject = ['$http'];
+// function factory($http) {
+// 	var factoryMethods = {};
+// 	factoryMethods.getAllThings = fucntion(){
+// 		return $http.get("http://localhost:3000/")
+// 	};
+// };
+
 
 routingStuff.$inject = ["$routeProvider"];
 function routingStuff($routeProvider){
