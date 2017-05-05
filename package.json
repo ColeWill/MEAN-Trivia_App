@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/CoolCode2/rapid-tooFast-MEAN-App#readme",
   "dependencies": {
+    "angular-resource": "^1.6.4",
+    "angular-route": "^1.6.4",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "mongoose": "^4.9.7"

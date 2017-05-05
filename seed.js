@@ -1,3 +1,4 @@
+
 var db =require('./models');
 
 var flashArray = [];
@@ -23,14 +24,18 @@ flashArray.push({
 });
 
 db.FlashCard.remove({}, function(err,cards){
-	console.log('cards taken out');
-	db.FlashCard.create(flashArray,function(err,cards){
-
+		if(err){
+			console.log('seed.js db.quote.remvove', err);
+		}
+		console.log('removed all quotes from mongo db');
+		db.FlashCard.create(flashArray, function(err, cards){
+			if(err){
+				return console.log('seed.js db.Quote.create', err);
+			}
+			console.log('added '+flashArray.length+" to mongoDB");
+			process.exit();
+		});
 	});
-	if(err){
-		console.log(err);
-	}
-	console.log('added '+flashArray.length+' cards');
-	process.exit();
-});
+	
+
 
