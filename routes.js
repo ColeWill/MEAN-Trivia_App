@@ -36,58 +36,39 @@ router.delete('/flashcards/:id', function delCard(req,res){
 });
 
 
-//post route broken
-router.post('/flashcards', function postUp(request,response){
-	console.log('post route hit');
-	console.log(request.body);
-	var postCard = new db.FlashCard(request.body);
-	
-	// 	type: req.body.type,
-	// 	question: req.body.question,
-	// 	answer: req.body.answer
-	// });
-	postCard.save(function(err, c){
-		response.json("added "+ c+" to the db!" );
+	/////////////  Post
+router.post('/flashcards', function post(req,res){
+	console.log(req.body);
+	var post = new db.FlashCard({
+		type: req.body.type,
+		question: req.body.question,
+		answer: req.body.answer
 	});
-
-router.put('/flashcards/:id', function put(req,res){
-	var putId = req.params.id;
-	console.log(putId+"putid");
-	res.json(putId);
-	db.FlashCard.findOne({_id: putId}, function(err, card){
-		card.type = req.body.type;
-		card.question = req.body.question;
-		card.answer = req.body.answer;
-
-		card.save(function(err, cardSave){
-			if (err){
-				res.json(err);
-			}
-			res.json(cardSave);
-		});
+	post.save(function(err,card){
+		res.json(card);
 	});
-});
 
 });
 
+// ///////////////////  PUT
+// router.put('/flashcards/:id', function put(req,res){
+// 	var putId = req.params.id;
+// 	console.log(putId+"putid");
+// 	res.json(putId);
+// 	db.FlashCard.findOne({_id: putId}, function(err, card){
+// 		card.type = req.body.type;
+// 		card.question = req.body.question;
+// 		card.answer = req.body.answer;
 
-
-
-
-//WORKING creates a new quote  +++++++++++++++  working
-// router.post('/api/quotes', function postQ(req,res){
-//         res.json("JSON req.body._id:   "+ req.body._id);
-//   var postQ = new db.Quote
-//     ({
-    
-//     quote: req.body.quote,
-//     author: req.body.author
-//       });
-      
-//     postQ.save(function(err, q){
-//           res.json(q);
-//   });
+// 		card.save(function(err, cardSave){
+// 			if (err){
+// 				res.json(err);
+// 			}
+// 			res.json(cardSave);
+// 		});
+// 	});
 // });
+
 
 
 

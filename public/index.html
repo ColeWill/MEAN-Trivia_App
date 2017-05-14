@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>FlashCardr</title>
+		<!-- CSS -->
+
+		<link rel="stylesheet" type="text/css" href="/css/styling.css">
+		<!-- jQuery for bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+ 		 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  		crossorigin="anonymous"></script>
+		<!-- bootstrap -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- angular -->
+		<script src="/bower_components/angular/angular.min.js"></script>
+		<!-- angulr route -->
+		<script src="/bower_components/angular-route/angular-route.min.js"></script>
+
+		
+		<!-- app.js connected -->
+		<script src="/scripts/app.js"></script>
+		<!-- controller twerkin -->
+		<script src="/scripts/controllers/flashCardController.js"></script>
+	
+   <!-- do i need to link directives??? -->
+        
+</head>
+<body ng-app="FlashCardApp">
+
+
+<div class="container">
+	<header class="navbar">
+	<h1 class="pull-left">Flash Cardr {{3+3}} = 6 angular working...</header>
+</div>
+
+<section class="conatainer-fluid" ng-controller="FlashCardController as flashControl">
+
+	<form ng-submit="flashControl.addNew()" method="POST">
+		<label>Make a New FlashCard!</label>
+		<div>
+			<input type="text" ng-model="flashControl.newCard.type" placeholder="Type">
+		</div>
+		<div>
+			<input type="text" ng-model="flashControl.newCard.question" placeholder="Question">
+		</div>
+		<div>
+			<input type="text" ng-model="flashControl.newCard.answer" placeholder="Answer">
+		</div>
+		<input type="submit" value="submit"></input>
+	</form>
+	
+	<div class="col-sm-4 col-md-4 col-lg-4" ng-repeat="card in flashControl.all">
+		<div class="flashCard">
+		<h5>Type: {{card.type}}</h5>
+		<h4>Question: {{card.question}}</h4>
+		<h4 id="answer">Answer: {{card.answer}}</h4>
+		<button class="btn-primary" value="answer" ng-click="showAnswer"></button>
+		<button class="btn-danger" ng-click="flashControl.removeCard(card)">x</button>
+		</div>
+	</div> 
+
+</section>
+
+
+
+<!-- <section id="cards" class="container-fluid" ng-controller="MyAppController as cards">
+	<div class="row">
+
+		<div class = "col-sm-6 col-md-6 col-lg-4" ng-repeat="card in cards.all" >
+			
+			<h4 class='card-title'>
+				{{card.question}}
+			</h4>
+		</div>
+
+	</div>
+	
+</section> -->
+
+<!-- directive-new pulls in my template -->
+<!-- <directive-new varname = 'Variable works'></directive-new> -->
+	 <div>
+		
+		<!-- <ng-view></ng-view> -->
+	</div>
+	
+
+<!-- <div ng-controller="MyAppController as lilSegundo">
+	<p>{{lilSegundo.all}}</p>
+</div> -->
+	<!-- varname can't have ng in front of it -->
+	<!-- <directive-new varname="crunk"></directive-new> -->
+</body>
+</html> 
