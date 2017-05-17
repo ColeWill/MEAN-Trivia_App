@@ -35,7 +35,7 @@
 
 <div class="container">
 	<header class="navbar">
-	<h1 class="pull-left">Flash Cardr {{3+3}} = 6 angular working...</header>
+	<h1 class="pull-left">FlashCard</header>
 </div>
 
 <section class="conatainer-fluid" ng-controller="FlashCardController as flashControl">
@@ -51,16 +51,21 @@
 		<div>
 			<input type="text" ng-model="flashControl.newCard.answer" placeholder="Answer">
 		</div>
-		<input type="submit" value="submit"></input>
+		<input class="btn-primary" type="submit" value="submit"></input>
 	</form>
 	
-	<div class="col-sm-4 col-md-4 col-lg-4" ng-repeat="card in flashControl.all">
+	<div id="flashCard" class="col-sm-3 col-md-4 col-lg-4" ng-repeat="card in flashControl.all">
 		<div class="flashCard">
-		<h5>Type: {{card.type}}</h5>
-		<h4>Question: {{card.question}}</h4>
-		<h4 id="answer">Answer: {{card.answer}}</h4>
-		<button class="btn-primary" value="answer" ng-click="showAnswer"></button>
-		<button class="btn-danger" ng-click="flashControl.removeCard(card)">x</button>
+		<h5>{{card.type}}...</h5>
+		<h6>Question: {{card.question}}</h6>
+		<h6 >Answer: <span id="answer"></span></h6>
+		
+		<button ng-disabled="yes" class="btn-info" value="answer" ng-click="flashControl.answer(card)" ng-click="yes=true">Answer</button>
+		
+		<button class="btn-warning" value="hide" ng-click="flashControl.hideCard(card)">Hide</button>
+		<span class="pull-right">
+		<button id="deleteBTN"  class="btn-danger"  ng-click="flashControl.removeCard(card)">X</button>
+		</span>
 		</div>
 	</div> 
 
