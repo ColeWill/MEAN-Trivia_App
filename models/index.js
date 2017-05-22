@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/flashCards');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/flashCards');
 
 module.exports.FlashCard = require('./flashCard.js');

@@ -19,7 +19,7 @@ function FlashCardController($http){
 
 	function getCards(){
 		$http
-		.get('http://localhost:4000/flashcards')
+		.get('/flashcards')
 		.then(function(res){
 			self.all = res.data;
 			console.log("got the cards");
