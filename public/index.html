@@ -9,13 +9,11 @@
 		<!-- CSS -->
 
 		<link rel="stylesheet" type="text/css" href="/css/styling.css">
-		<!-- jQuery for bootstrap -->
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
- 		 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  		crossorigin="anonymous"></script>
+		
 		<!-- bootstrap -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
+		
 		<!-- angular -->
 		<script src="/bower_components/angular/angular.min.js"></script>
 		<!-- angulr route -->
@@ -26,79 +24,80 @@
 		<script src="/scripts/app.js"></script>
 		<!-- controller twerkin -->
 		<script src="/scripts/controllers/flashCardController.js"></script>
+		
 	
-   <!-- do i need to link directives??? -->
+ 
         
 </head>
 <body ng-app="FlashCardApp">
 
+<section class="container-fluid">
 
-<div class="container">
-	<header class="navbar">
-	<h1 class="pull-left">FlashCard</header>
-</div>
+	<nav class="navbar">
+	  <h1 class="navbar-brand mb-0">Flash Card Saver - MongoDB + Express + AngularJS + NodeJS</h1>
+	</nav>
 
-<section class="conatainer-fluid" ng-controller="FlashCardController as flashControl">
+	<article class="container" ng-controller="FlashCardController as flashControl">
+		<!-- Form -->
+		<div id="formbox" class="row">
+			<div class="col-6">
 
-	<form ng-submit="flashControl.addNew()" method="POST">
-		<label>Make a New FlashCard!</label>
-		<div>
-			<input type="text" ng-model="flashControl.newCard.type" placeholder="Type">
+				<form ng-submit="flashControl.addNew()" method="POST">
+					<h4>Create your Flashcard Below!</h4>
+					
+					<div class="form-group">
+						<label for="Type">The Type of Question...</label>
+						<input class="form-group form-control" id="Type" type="text" ng-model="flashControl.newCard.type" placeholder="Type">
+					</div>
+
+					<div class="form-group">
+						<label for="Type">The Question...</label>
+						<input class="form-group form-control" id="Type" type="text" ng-model="flashControl.newCard.question" placeholder="Question">
+					</div>
+
+					<div class="form-group">
+						<label for="Type">The Answer...</label>
+						<input class="form-group form-control" id="Type" type="text" ng-model="flashControl.newCard.answer" placeholder="Answer">
+					</div>
+
+					<input id="submit" class="btn-primary" type="submit" value="create">
+
+				</form>
+
+			</div>
 		</div>
-		<div>
-			<input type="text" ng-model="flashControl.newCard.question" placeholder="Question">
+		<!-- Form -->
+		<!-- FlashCard -->
+		<div class="container">
+			<div class="row">
+				<div id="flashCard" ng-repeat="card in flashControl.all">
+					<div class="flashCard">
+						<div id="innerCard">
+							<h5>{{card.type}}...</h5>
+							<h6>Question: {{card.question}}</h6>
+							<h6 >Answer: <span id="answer"></span></h6>
+							
+							<button ng-disabled="yes" class="btn-info" value="answer" ng-click="flashControl.answer(card)" ng-click="yes=true">Answer</button>
+							
+							<button class="btn-warning" value="hide" ng-click="flashControl.hideCard(card)">Hide</button>
+							<span class="pull-right">
+							<button id="deleteBTN"  class="btn-danger"  ng-click="flashControl.removeCard(card)">X</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div>
-			<input type="text" ng-model="flashControl.newCard.answer" placeholder="Answer">
-		</div>
-		<input class="btn-primary" type="submit" value="submit"></input>
-	</form>
-	
-	<div id="flashCard" class="col-sm-3 col-md-4 col-lg-4" ng-repeat="card in flashControl.all">
-		<div class="flashCard">
-		<h5>{{card.type}}...</h5>
-		<h6>Question: {{card.question}}</h6>
-		<h6 >Answer: <span id="answer"></span></h6>
-		
-		<button ng-disabled="yes" class="btn-info" value="answer" ng-click="flashControl.answer(card)" ng-click="yes=true">Answer</button>
-		
-		<button class="btn-warning" value="hide" ng-click="flashControl.hideCard(card)">Hide</button>
-		<span class="pull-right">
-		<button id="deleteBTN"  class="btn-danger"  ng-click="flashControl.removeCard(card)">X</button>
-		</span>
-		</div>
-	</div> 
+
+	</article>
 
 </section>
 
-
-
-<!-- <section id="cards" class="container-fluid" ng-controller="MyAppController as cards">
-	<div class="row">
-
-		<div class = "col-sm-6 col-md-6 col-lg-4" ng-repeat="card in cards.all" >
-			
-			<h4 class='card-title'>
-				{{card.question}}
-			</h4>
-		</div>
-
-	</div>
-	
-</section> -->
-
-<!-- directive-new pulls in my template -->
-<!-- <directive-new varname = 'Variable works'></directive-new> -->
-	 <div>
+	<!-- jQuery for bootstrap -->
+	<!-- bootstrap js jquery popper -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		
-		<!-- <ng-view></ng-view> -->
-	</div>
-	
-
-<!-- <div ng-controller="MyAppController as lilSegundo">
-	<p>{{lilSegundo.all}}</p>
-</div> -->
-	<!-- varname can't have ng in front of it -->
-	<!-- <directive-new varname="crunk"></directive-new> -->
 </body>
 </html> 

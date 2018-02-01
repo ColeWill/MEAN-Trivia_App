@@ -1,12 +1,30 @@
 h1{
 	color:red;
 }
+nav{
+	background-color: #e2edff;
+	border-radius: 5px;
+}
 #flashCard{
 	border: 3px solid grey;
-	max-width: 300px;	
-	
+	border-radius: 2px;
+	margin: 2% 2% 2% 2%;
+	height: 200px;
+	width: 375px;
+}
+#innerCard{
+	margin: 10% 0 0 2%;
+}
+#formbox{
+	margin: 3% 0 3% 0;
 }
 
 #deleteBTN{
 	/*float:right;*/
+}
+
+button{ margin-bottom: 2% }
+
+#submit{
+	margin-top: 2%;
 }
